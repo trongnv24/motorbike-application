@@ -8,4 +8,6 @@ public interface MotorbikeService {
     MotorbikeResponse create(MotorbikeRequest request);
 
     MotorbikeResponse getById(String id);
+
+    MotorbikeResponse update(MotorbikeRequest request, String id);
 }
