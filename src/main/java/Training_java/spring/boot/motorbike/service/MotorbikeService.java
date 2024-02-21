@@ -10,4 +10,6 @@ public interface MotorbikeService {
     MotorbikeResponse getById(String id);
 
     MotorbikeResponse update(MotorbikeRequest request, String id);
+
+    void deleteById(String id);
 }

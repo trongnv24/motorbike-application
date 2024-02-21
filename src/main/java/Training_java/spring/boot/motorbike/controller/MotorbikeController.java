@@ -44,4 +44,12 @@ public class MotorbikeController {
         log.info(" === Finish api update motorbike, Motorbike Id === ", response.getId());
         return response;
     }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteById(@PathVariable ("id") String id){
+        log.info(" Start api deleteById motorbike === ");
+        log.info(" === String id {} : === ", id);
+        log.info(" === Finish api update motorbike, Motorbike Id {} : === ");
+        service.deleteById(id);
+     }
 }
