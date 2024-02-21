@@ -63,7 +63,19 @@ public class MotorbikeServiceImpl implements MotorbikeService {
         motorbikeEntity.setBrand(request.getBrand());
         motorbikeEntity = motorbikeRepository.save(motorbikeEntity);
         MotorbikeResponse response = convertEntityToMotorbikeResponse(motorbikeEntity);
-        log.info(" === Finish api update motorbike, Motorbike Id", response.getId());
+        log.info(" === Finish api update motorbike, Motorbike Id {} : === ", response.getId());
         return response;
+    }
+
+    @Override
+    public void deleteById(String id) {
+        log.info(" === Start api update motorbike === ");
+        log.info(" === String id {} : === ", id);
+        Optional<MotorbikeEntity>optionalMotorbike = motorbikeRepository.findById(id);
+        if (!optionalMotorbike.isPresent()){
+            throw new RuntimeException();
+        }
+        log.info(" === Finish api update motorbike, Motorbike Id {} :  === ");
+        motorbikeRepository.deleteById(id);
     }
 }
