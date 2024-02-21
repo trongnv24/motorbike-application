@@ -26,4 +26,13 @@ public class MotorbikeController {
         log.info(" === Finish api create new motorbike, Motorbike Id : {} === ", response.getId());
        return response;
     }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MotorbikeResponse getById(@PathVariable("id") String id){
+        log.info(" === Start api getById motorbike === ");
+        log.info(" === String id {} : === ", id);
+        MotorbikeResponse response = service.getById(id);
+        log.info(" === Finish api getById motorbike, MotorbikeId Id {} : === ", response.getId());
+        return response;
+    }
 }

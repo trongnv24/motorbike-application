@@ -8,6 +8,8 @@ import Training_java.spring.boot.motorbike.service.MotorbikeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 import static Training_java.spring.boot.motorbike.service.mapping.MotorbikeMapping.convertDtoToEntity;
 import static Training_java.spring.boot.motorbike.service.mapping.MotorbikeMapping.convertEntityToMotorbikeResponse;
 
@@ -28,6 +30,20 @@ public class MotorbikeServiceImpl implements MotorbikeService {
         motorbikeEntity= motorbikeRepository.save(motorbikeEntity);
         MotorbikeResponse response = convertEntityToMotorbikeResponse(motorbikeEntity);
         log.info(" === Finish api create new motorbike, Motorbike Id {} : === ", response.getId());
+        return response;
+    }
+
+    @Override
+    public MotorbikeResponse getById(String id) {
+        log.info( " === Start api getById motorbike === ");
+        log.info(" === String id {} :  === ", id);
+        Optional<MotorbikeEntity> optionalMotorbike = motorbikeRepository.findById(id);
+        if(!optionalMotorbike.isPresent()){
+            throw new RuntimeException();
+        }
+        MotorbikeEntity motorbikeEntity = optionalMotorbike.get();
+        MotorbikeResponse response = convertEntityToMotorbikeResponse(motorbikeEntity);
+        log.info(" === Finish api getById motorbike, Motorbike Id {} : ===", response.getId());
         return response;
     }
 }
