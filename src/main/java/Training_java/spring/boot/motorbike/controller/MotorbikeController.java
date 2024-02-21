@@ -35,4 +35,13 @@ public class MotorbikeController {
         log.info(" === Finish api getById motorbike, MotorbikeId Id {} : === ", response.getId());
         return response;
     }
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MotorbikeResponse update(@RequestBody MotorbikeRequest request, @PathVariable("id") String id){
+        log.info(" === Start api update motorbike === ");
+        log.info(" === Request Body {} :, String id {} : === ", request,id);
+        MotorbikeResponse response = service.update(request,id);
+        log.info(" === Finish api update motorbike, Motorbike Id === ", response.getId());
+        return response;
+    }
 }
